@@ -1,0 +1,63 @@
+$line-height:40px;
+
+.angular-picklist {
+  ul.sortable.empty::after{
+    content: "Empty";
+    text-align: center;
+    vertical-align: middle;
+    line-height: $line-height;
+    color: #b7b7b7;
+  }
+  .sortable {
+    background: #eee;
+    border-radius: 0.25rem;
+    min-height: $line-height;
+  }
+  .picklist-actions{
+    text-align: center;
+    padding-top: $line-height;
+    button{
+      width: 50%;
+    }
+  }
+
+  .picklist-header{
+    text-align: right;
+    color: #b9b9b9;
+    font-size: 90%;
+    min-height: $line-height;
+
+    span{
+      line-height: $line-height;
+
+      &::before{
+        content: "Count : ";
+      }
+    }
+  }
+
+
+  li.list-group-item  {
+    &.selected{
+      background-color:#007bff;
+      color: #ffffff;
+    }
+  }
+  .sortable-ghost{
+    visibility: hidden;
+  }
+//  .list-group-item.disabled, 
+//  .list-group-item:disabled{
+//     color: red;
+//     background-color: #dfdfdf;
+//   }
+
+   // If there is only one child element and which is disabled then
+   // there is issue with drop. Drop area is hidden behind 
+   // the disabled item. To avoid it, adding some margin to reveal it.
+  .sortable .list-group-item.disabled:only-child {
+    margin-bottom: 10px;
+  }
+}
+
+

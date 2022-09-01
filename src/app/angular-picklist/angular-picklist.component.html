@@ -1,0 +1,84 @@
+<p>
+angular-picklist works!
+<a href="#">dummy</a>
+</p>
+<div>
+  <p> org List[0] => {{lists[0].items.length}} | leftList => {{leftList.items.length}}</p>
+  <p> org List[1] => {{lists[1].items.length}}</p>
+</div>
+<div class="row angular-picklist">
+  <div class="col-sm-4">
+    <div class="picklist-header">
+      <span *ngIf="leftList.items.length !== 0" class="current-items">{{getSize(leftList)}}</span>
+    </div>
+    <div *ngIf="options.searchable" class="picklist-search">
+      <input type="text" [(ngModel)]="leftList.searchModel" (keyup)="onSearch($event, leftList)">
+      <span>{{leftList.searchModel}}</span>
+    </div>
+    <ul class="list-group sortable" [class.empty]="leftList.items.length === 0" [sortablejs]="leftList.items" [sortablejsOptions]="options">
+      <li class="list-group-item" 
+        *ngFor="let item of leftList.items" 
+        (click)="onItemClick($event, item)"
+        (keydown.enter)="onEnterKey($event, item)"
+        [class.selected]="item.selected"
+        tabindex="0"
+        [hidden]="item.visible===false"
+        [class.draggable]="item.disabled ? '' : options.draggable"
+        [class.disabled]="item.disabled"
+      >
+        Element {{ item.content }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-2 picklist-actions">
+    <button (click)="onAddAllClick($event)">&raquo;</button>
+    <br>
+    <button (click)="onAddClick($event)">&rsaquo;</button>
+    <br>
+    <button (click)="onRemoveClick($event)">&lsaquo;</button>
+    <br>
+    <button (click)="onRemoveAllClick($event)">&laquo;</button>
+    <!-- <button>&darr;</button>
+    <button>&uarr;</button> -->
+  </div>
+  <div class="col-sm-4">
+    <div class="picklist-header">
+      <span *ngIf="rightList.items.length !== 0" class="current-items">{{getSize(rightList)}}</span>
+    </div>
+    <ul class="list-group sortable" [class.empty]="rightList.items.length === 0" [sortablejs]="rightList.items" [sortablejsOptions]="options">
+      <li class="list-group-item" 
+        *ngFor="let item of rightList.items" 
+        (click)="onItemClick($event, item)"
+        (keydown.enter)="onEnterKey($event, item)"
+        [class.selected]="item.selected"
+        tabindex="0"
+        [hidden]="item.visible===false"
+        [class.draggable]="item.disabled ? '' : options.draggable"
+        [class.disabled]="item.disabled"
+      >
+        Element {{ item.content }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<h4>
+  Json data
+</h4>
+<div class="row">
+  <div class="col-sm-4">
+    <pre>
+      <code>{{lists | json}}</code>
+    </pre>
+  </div>
+  <div class="col-sm-4">
+    <pre>
+      <code>{{leftList | json}}</code>
+    </pre>
+  </div>
+  <div class="col-sm-4">
+    <pre>
+      <code>{{rightList | json}}</code>
+    </pre>
+  </div>
+</div>

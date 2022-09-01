@@ -1,0 +1,33 @@
+<div>
+	<h2 class="mt-4 mb-3">Transfer between Picklists</h2>
+	<p>
+		These lists are connected together. You can drag / drop elements across the lists.
+	</p>
+
+	<div>
+		<div class="row">
+			<div class="col-sm-4 offset-md-1">
+				<ul class="list-group sortable" [sortablejs]="normalList1" [sortablejsOptions]="normalOptions">
+					<li class="list-group-item" *ngFor="let item of normalList1">Element {{ item }}</li>
+				</ul>
+			</div>
+
+			<div class="col-sm-4 offset-md-1">
+				<ul class="list-group sortable" [sortablejs]="normalList2" [sortablejsOptions]="normalOptions">
+					<li class="list-group-item" *ngFor="let item of normalList2">Element {{ item }}</li>
+				</ul>
+			</div>
+		</div>
+
+		<p class="my-3">and the actual state is</p>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="alert alert-dark">> {{ normalList1 | json }}</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="alert alert-dark">> {{ normalList2 | json }}</div>
+			</div>
+		</div>
+	</div>
+</div>
